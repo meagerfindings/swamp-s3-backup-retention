@@ -1,0 +1,13 @@
+manifestVersion: 1
+name: "@mgreten/s3-backup-retention"
+version: 2026.08.28.1
+description: "Safe, deterministic backup retention for S3-compatible object stores with two-observation absence proof and digest-bound deletion plans."
+repository: "https://github.com/meagerfindings/swamp-s3-backup-retention"
+paths:
+  base: manifest
+models:
+  - extensions/models/s3_backup_retention.ts
+additionalFiles:
+  - README.md
+  - LICENSE
+platforms: []

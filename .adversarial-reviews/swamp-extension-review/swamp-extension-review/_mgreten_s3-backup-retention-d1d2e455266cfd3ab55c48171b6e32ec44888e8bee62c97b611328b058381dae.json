@@ -1,0 +1,22 @@
+{
+  "extension": "@mgreten/s3-backup-retention",
+  "version": "2026.08.28.1",
+  "reviewedAt": "2026-08-28T21:19:20Z",
+  "dimensions": [
+    { "id": "credentials-secrets", "verdict": "pass", "note": "Role credentials are optional sensitive global arguments; no secret values are logged or persisted." },
+    { "id": "logging-quality", "verdict": "pass", "note": "Every method emits structured entry and completion logs without object keys or credentials; exact candidate outcomes are durably plan-bound." },
+    { "id": "error-handling", "verdict": "pass", "note": "Isolation accepts only AccessDenied, list and immutable-write anomalies fail closed, and destructive confirmation is exact and digest-bound." },
+    { "id": "testing-completeness", "verdict": "issue", "note": "Fifteen model and contract tests pass, including pagination, lifecycle, schema writes, and crash recovery. The exact generic implementation could not complete a live R2 canary because this runner cannot read the operations vault; the older private model's successful run is not treated as equivalent evidence." },
+    { "id": "idempotency-resilience", "verdict": "pass", "note": "Create-once plans, ledgers, per-candidate intents/outcomes, and receipts make replay deterministic; interrupted deletes become explicit uncertainty rather than false deletion claims." },
+    { "id": "api-contracts", "verdict": "issue", "note": "AWS SDK pagination, lifecycle, conditional-write, HEAD, and delete behavior are covered with command fakes, but the exact implementation has not completed a live R2 canary due vault permissions." },
+    { "id": "resource-management", "verdict": "pass", "note": "Listings are bounded and all constructed S3 clients are destroyed in finally blocks." },
+    { "id": "published-surface-hygiene", "verdict": "pass" },
+    { "id": "schema-strictness", "verdict": "pass", "note": "Published arguments, resources, plans, receipts, intents, and outcomes use strict schemas." },
+    { "id": "lifetime-gc", "verdict": "issue", "note": "Swamp resources have bounded GC, while provider ledgers and plans intentionally remain append-only and can eventually reach maximumObjects; operators must choose a bound appropriate to their retention horizon." },
+    { "id": "crud-completeness", "verdict": "na", "note": "Safety protocol model, not a CRUD resource lifecycle." },
+    { "id": "preflight-checks", "verdict": "pass", "note": "Apply has separately visible policy and live-authority checks and repeats destructive invariants inside execution." },
+    { "id": "instance-names", "verdict": "pass" },
+    { "id": "data-access", "verdict": "pass", "note": "Provider state is read through explicit immutable S3 objects; model methods do not bypass Swamp data APIs for Swamp resources." },
+    { "id": "version-upgrades", "verdict": "na", "note": "Initial publication." }
+  ]
+}

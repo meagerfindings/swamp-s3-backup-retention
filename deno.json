@@ -1,0 +1,15 @@
+{
+  "nodeModulesDir": "auto",
+  "fmt": {
+    "lineWidth": 80
+  },
+  "lint": {
+    "rules": {
+      "exclude": ["no-import-prefix"]
+    }
+  },
+  "tasks": {
+    "check": "deno check extensions/models/s3_backup_retention.ts extensions/models/s3_backup_retention_test.ts",
+    "test": "deno test --allow-env=SMITHY_NEW_RETRIES_2026 extensions/models/s3_backup_retention_test.ts"
+  }
+}
